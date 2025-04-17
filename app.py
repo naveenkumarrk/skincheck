@@ -426,27 +426,31 @@ Keep each section to 1-2 sentences maximum. Be factually accurate and educationa
         
         # Prepare the response
         response = {
-            "condition_name": condition_name,
-            "condition_code": condition,
-            "what_it_is": sections.get("what_it_is", "Information not available"),
-            "risk_factors": sections.get("risk_factors", "Information not available"),
-            "management": sections.get("management", "Information not available"),
-            "when_to_see_doctor": sections.get("when_to_see_doctor", "When in doubt, consult a dermatologist.")
-        }
+    "detailedAdvice": {
+        "condition_name": condition_name,
+        "condition_code": condition,
+        "what_it_is": sections.get("what_it_is", "Information not available"),
+        "risk_factors": sections.get("risk_factors", "Information not available"),
+        "management": sections.get("management", "Information not available"),
+        "when_to_see_doctor": sections.get("when_to_see_doctor", "When in doubt, consult a dermatologist.")
+    }
+}
         
         return response
         
     except Exception as e:
         # Fallback to static responses if API fails
-        response = {
-            "condition_name": condition_name,
-            "condition_code": condition,
-            "what_it_is": "Information not available due to service error.",
-            "risk_factors": "Please try again later.",
-            "management": "In the meantime, consult a healthcare professional for advice.",
-            "when_to_see_doctor": "If you're concerned about your skin, see a dermatologist.",
-            "error": str(e)
-        }
+        response ={
+    "detailedAdvice": {
+        "condition_name": condition_name,
+        "condition_code": condition,
+        "what_it_is": "Information not available due to service error.",
+        "risk_factors": "Please try again later.",
+        "management": "In the meantime, consult a healthcare professional for advice.",
+        "when_to_see_doctor": "If you're concerned about your skin, see a dermatologist."
+    },
+    "error": str(e)
+}
         
         return response
 
